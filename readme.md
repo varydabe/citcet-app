@@ -2,7 +2,8 @@
 
 ## Introduction
 
-> This is anonymous chat app was created for Application and Information Integration Course
+> This chat app was created for Application and Information Integration Course.
+>
 > Build with Nodejs, Express, and Socket.io and MongoDB.
 
 This app is mainly influenced by https://github.com/rexeze/anonymouse-realtime-chat-app/ with many major changes.
