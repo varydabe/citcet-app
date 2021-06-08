@@ -88,7 +88,6 @@ var senderId = paramsRoom.get("senderId").toString();
         return data.json();
       })
       .then(json => {
-        title.append(json[0].senderName);
         json.map(data => {
           let li = document.createElement("li");
           let span = document.createElement("span");
