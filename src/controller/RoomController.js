@@ -26,12 +26,14 @@ async function initRoom(req, res, next) {
         member: listMember
     }
 
+    console.log(data);
+
     // Save User
     try {
         // sender
-        await UserController.saveUser({userId: senderId, username: senderName});
+        await UserController.saveUser({userId: data.senderId, username: data.senderName});
         // receiver
-        await UserController.saveUser({userId: receiverId, username: receiverName});
+        await UserController.saveUser({userId: data.receiverId, username: data.receiverName});
     }
     catch (error) {
         return Promise.reject(error);

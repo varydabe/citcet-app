@@ -31,6 +31,17 @@ async function saveUser(data) {
     }
 
     try {
+        var existUser = await User.find({userId: data.userId});
+    }
+    catch (error) {
+        return Promise.reject(error);
+    }
+
+    if (existUser.length !== 0) {
+        return Promise.resolve(existUser);
+    }
+
+    try {
         var user = await User.create(newUser);
         return Promise.resolve(user)
     }
