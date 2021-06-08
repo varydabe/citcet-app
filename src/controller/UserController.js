@@ -19,7 +19,20 @@ async function getUserById(req, res, next) {
 
 async function saveUser(data) {
     try {
-        var user = await User.saveUser(data);
+        var user = await User.getUserById(data.userId);
+        console.log("ini user setelah save user get userbyId");
+        console.log(user);
+    }
+    catch (error) {
+        return Promise.reject(error);
+    }
+
+    if(user) {
+        return Promise.resolve(user);
+    }
+
+    try {
+        user = await User.saveUser(data);
 
         return Promise.resolve(user);
     } catch (error) {

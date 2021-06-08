@@ -33,6 +33,7 @@ const roomSchema = new Schema(
 const Room = mongoose.model("room", roomSchema);
 
 async function initRoom(data) {
+    //check  if room already exist with the same member.
     try {
         var room = await Room.findOne({ member: data.member }, { __v: 0 });
     }

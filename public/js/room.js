@@ -1,5 +1,3 @@
-var socket = io();
-var messages = document.getElementById("messages");
 var rooms = document.getElementById("rooms");
 
 // INDEX (ROOM)
@@ -14,21 +12,31 @@ var rooms = document.getElementById("rooms");
       })
       .then(json => {
         json.map(data => {
-          var li = document.createElement("li");
-          var btn = document.createElement("btn");
-          var span = document.createElement("span", );
-          var p = document.createElement("p");
-
           var partner = data.member.split(',');
           partner = partner.filter((user) => {
             return user!==userId;
           })
-          btn.appendChild(li).append(partner);
-          rooms.appendChild(btn);
-          rooms.appendChild(p).append(data.lastMessage);
-          rooms.appendChild(span).append("by " + formatTimeAgo(data.createdAt));
 
-          btn.onclick = function () {
+          var li = document.createElement("li");
+          var div = document.createElement("div");
+          var h4 = document.createElement("h4");
+          var span = document.createElement("span", );
+          var p = document.createElement("p");
+
+          li.setAttribute("id", "listRoom");
+          div.setAttribute("id", "divRoom");
+          h4.setAttribute("id", "partnerName");
+          p.setAttribute("id", "message");
+          span.setAttribute("id", "time");
+
+          div.appendChild(h4).append(partner);
+          div.appendChild(p).append(data.lastMessage);
+          div.appendChild(span).append(formatTimeAgo(data.createdAt));
+          li.appendChild(div);
+
+          rooms.appendChild(li);
+
+          div.onclick = function () {
             window.open(`/chat.html?roomId=${data.roomId}&senderId=${userId}`)
           }
         });

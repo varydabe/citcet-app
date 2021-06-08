@@ -58,19 +58,22 @@ socket.on("connection", socket => {
     // join spesific room
     socket.join(room);
 
-    //broadcast message to everyone in port:5000 except yourself.
-    socket.in(data.roomId).emit("message", { message: data.message, senderName: data.senderName});
+    if(data.message!=="__subscribe__") {
+      //broadcast message to everyone in port:5000 except yourself.
+      socket.in(data.roomId).emit("message", { message: data.message, senderName: data.senderName});
 
-    //save chat to the database
-    newMessage = {
-      message: data.message,
-      senderId: data.senderId,
-      senderName: data.senderName,
-      roomId: data.roomId
+      //save chat to the database
+      newMessage = {
+        message: data.message,
+        senderId: data.senderId,
+        senderName: data.senderName,
+        roomId: data.roomId
+      }
+
+      ChatController.sendMessage(newMessage);
     }
 
-    ChatController.sendMessage(newMessage);
-
+    console.log(data.message);
   });
 });
 
