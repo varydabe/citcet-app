@@ -15,5 +15,6 @@ router.route("/messages").get(ChatController.getAllMessages);
 router.route("/room").post(RoomController.initRoom);
 router.route("/room").get(RoomController.getAllRooms);
 router.route("/user").get(UserController.getUserById);
+router.route("/admin").get(RoomController.renderAdminPage);
 
 module.exports = router;

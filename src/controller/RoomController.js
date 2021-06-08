@@ -79,5 +79,9 @@ async function getAllRooms(req, res, next) {
     return Promise.resolve(res.json(rooms));
 }
 
+function renderAdminPage(req, res, next) {
+    return res.redirect("/admin.html");
+}
 
-module.exports = {initRoom, updateLastMessage, getAllRooms}
+
+module.exports = {initRoom, updateLastMessage, getAllRooms, renderAdminPage}
