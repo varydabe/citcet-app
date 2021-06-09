@@ -16,7 +16,6 @@ var rooms = document.getElementById("rooms");
           partner = partner.filter((user) => {
             return user!==userId;
           })
-
           var li = document.createElement("li");
           var div = document.createElement("div");
           var h4 = document.createElement("h4");
@@ -29,7 +28,11 @@ var rooms = document.getElementById("rooms");
           p.setAttribute("id", "message");
           span.setAttribute("id", "time");
 
-          div.appendChild(h4).append(partner);
+          console.log(data);
+          if(data.senderId===userId) {
+            div.appendChild(h4).append(data.receiverName);
+          }
+          div.appendChild(h4).append(data.senderName);
           div.appendChild(p).append(data.lastMessage);
           div.appendChild(span).append(formatTimeAgo(data.createdAt));
           li.appendChild(div);
