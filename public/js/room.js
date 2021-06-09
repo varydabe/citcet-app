@@ -32,7 +32,9 @@ var rooms = document.getElementById("rooms");
           if(data.senderId===userId) {
             div.appendChild(h4).append(data.receiverName);
           }
-          div.appendChild(h4).append(data.senderName);
+          else {
+            div.appendChild(h4).append(data.senderName);
+          }
           div.appendChild(p).append(data.lastMessage);
           div.appendChild(span).append(formatTimeAgo(data.createdAt));
           li.appendChild(div);
